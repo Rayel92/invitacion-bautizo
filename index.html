@@ -7,6 +7,17 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Alex+Brush&family=Great+Vibes&family=Lora:ital@0;1&family=Quicksand:wght@400;600&display=swap');
 
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translate(-50%, -60%);
+            }
+            to {
+                opacity: 1;
+                transform: translate(-50%, -50%);
+            }
+        }
+
         body {
             margin: 0;
             padding: 0;
@@ -21,16 +32,66 @@
             background-position: center;
         }
 
+        .envelope-container {
+            position: relative;
+            width: 300px;
+            height: 200px;
+            perspective: 1000px;
+        }
+
+        .envelope {
+            width: 100%;
+            height: 100%;
+            background: #d4a97b;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 1s;
+            cursor: pointer;
+        }
+
+        .envelope .front-flap {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: #bc8658;
+            clip-path: polygon(0 0, 50% 50%, 100% 0);
+            transform-origin: top;
+            transform: rotateX(0deg);
+            transition: transform 0.6s;
+        }
+
+        .envelope.open .front-flap {
+            transform: rotateX(-180deg);
+        }
+
+        .envelope .back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: #d4a97b;
+            clip-path: polygon(0 100%, 50% 50%, 100% 100%);
+        }
+
         .invitation {
-            background: rgba(255, 255, 255, 0.8);
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(255, 255, 255, 0.95);
             border: 10px solid #f2e4dc;
             border-radius: 20px;
             padding: 30px;
             max-width: 600px;
             text-align: center;
             box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-            position: relative;
             z-index: 2;
+            animation: fadeIn 1s ease-out forwards;
+            opacity: 0;
+        }
+
+        .envelope.open ~ .invitation {
+            display: block;
         }
 
         .invitation h1 {
@@ -65,16 +126,6 @@
             display: block;
         }
 
-        .gif-background {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 1;
-            opacity: 0.3;
-        }
-
         .footer {
             margin-top: 20px;
             font-size: 14px;
@@ -93,21 +144,56 @@
             text-decoration: underline;
         }
 
-        /* Agregar estilo para el audio (opcional) */
-        audio {
-            display: none; /* Ocultar el reproductor */
+        /* Estilo del botón redondo en la solapa */
+        .open-button {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #bc8658;
+            color: white;
+            font-family: 'Quicksand', sans-serif;
+            padding: 0; /* El padding ahora se elimina para que el tamaño del botón sea fijo */
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            border: none;
+            cursor: pointer;
+            font-size: 12px; /* Tamaño de la fuente reducido */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: background-color 0.3s ease, transform 0.5s ease, opacity 0.5s ease;
+            z-index: 2;
+
+            /* Centrado del texto dentro del botón */
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
+
+        .open-button:hover {
+            background-color: #d4a97b;
+        }
+
+        .button-hidden {
+            opacity: 0;
+            transform: scale(0);
+        }
+
     </style>
 </head>
 <body>
-    <!-- Reproductor de música de fondo -->
-    <audio autoplay loop>
-        <source src="Descargas/Romantic_Flight.mp3" type="audio/mp3">
-    </audio>
+    <audio id="invitationAudio" src="Romantic_Flight.mp3" preload="auto"></audio>
+
+
+    <div class="envelope-container" onclick="toggleEnvelope()">
+        <div class="envelope">
+            <div class="front-flap"></div>
+            <div class="back"></div>
+            <button class="open-button" onclick="hideButton(event)">Abrir</button>
+        </div>
+    </div>
 
     <div class="invitation">
-        <img src="flores.gif" alt="Flores Cayendo" class="gif-background">
-
         <h1>Estás Invitado</h1>
         <h2>Al Bautizo de</h2>
         <p class="highlight">Alessandra Rayel Tello Marambio</p>
@@ -127,5 +213,37 @@
             <p><a href="https://www.google.com/maps?q=-33.60906290783182,-70.5926643396606" target="_blank">Ver Ubicación en Google Maps</a></p>
         </div>
     </div>
+
+    <script>
+        function toggleEnvelope() {
+            const envelope = document.querySelector('.envelope');
+            const invitation = document.querySelector('.invitation');
+            const audio = document.getElementById('invitationAudio'); // Obtenemos el elemento de audio
+
+             // Establece el volumen del audio (valor entre 0 y 1)
+            audio.volume = 0.2; // Baja el volumen al 30%
+
+            envelope.classList.add('open'); // Abre el sobre
+            
+            // Espera el tiempo de la animación para mostrar la invitación
+            setTimeout(() => {
+                envelope.style.display = 'none'; // Oculta el sobre
+                invitation.style.display = 'block'; // Muestra la invitación
+
+                // Reproduce la canción
+                audio.play();
+            }, 1000); // Ajusta el tiempo según la duración de la animación del sobre
+        }
+
+        function hideButton(event) {
+            const button = event.target; // El botón que fue clickeado
+            button.classList.add('button-hidden'); // Aplica la clase de animación
+            setTimeout(() => {
+                button.style.display = 'none'; // Finalmente oculta el botón
+            }, 500); // Tiempo de la animación (500ms)
+        }
+
+        
+    </script>
 </body>
 </html>
