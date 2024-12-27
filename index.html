@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invitación Bautizo</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Alex+Brush&family=Great+Vibes&family=Lora:ital@0;1&family=Quicksand:wght@400;600&display=swap');
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Lora', serif;
+            background-color: #f1f1f1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-image: url('fondo.jpg'); /* Fondo de la página */
+            background-size: cover;
+            background-position: center;
+        }
+
+        .invitation {
+            background: rgba(255, 255, 255, 0.8);
+            border: 10px solid #f2e4dc;
+            border-radius: 20px;
+            padding: 30px;
+            max-width: 600px;
+            text-align: center;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            position: relative;
+            z-index: 2;
+        }
+
+        .invitation h1 {
+            font-family: 'Alex Brush', cursive;
+            font-size: 40px;
+            color: #d4a97b;
+            margin-bottom: 10px;
+        }
+
+        .invitation h2 {
+            font-family: 'Great Vibes', cursive;
+            font-size: 36px;
+            color: #876445;
+        }
+
+        .invitation p {
+            font-size: 16px;
+            margin: 15px 0;
+            font-family: 'Quicksand', sans-serif;
+        }
+
+        .highlight {
+            font-family: 'Great Vibes', cursive;
+            font-size: 28px;
+            color: #bc8658;
+        }
+
+        .girl-image {
+            margin: 20px auto;
+            width: 300px;
+            height: auto;
+            display: block;
+        }
+
+        .gif-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            opacity: 0.3;
+        }
+
+        .footer {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #876445;
+            position: relative;
+            z-index: 3;
+        }
+
+        .footer a {
+            color: #d4a97b;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Agregar estilo para el audio (opcional) */
+        audio {
+            display: none; /* Ocultar el reproductor */
+        }
+    </style>
+</head>
+<body>
+    <!-- Reproductor de música de fondo -->
+    <audio autoplay loop>
+        <source src="Descargas/Romantic_Flight.mp3" type="audio/mp3">
+    </audio>
+
+    <div class="invitation">
+        <img src="flores.gif" alt="Flores Cayendo" class="gif-background">
+
+        <h1>Estás Invitado</h1>
+        <h2>Al Bautizo de</h2>
+        <p class="highlight">Alessandra Rayel Tello Marambio</p>
+        <img src="niña2.png" alt="Niña Bautizándose" class="girl-image">
+        <p>Ven a acompañarnos en este día tan especial y lleno de bendiciones.</p>
+        <p style="font-size: 12px; margin: 8px 0;">Lugar: <strong>Capilla Nuestra Señora de Fátima</strong></p>
+        <p style="font-size: 12px; margin: 8px 0;">Dirección: <strong>Mariano Gómez 1065, Puente Alto, Región Metropolitana</strong></p>
+        <p style="font-size: 12px; margin: 8px 0;">Fecha y hora: <strong>Febrero de 2025</strong></p>
+
+        <!-- Información de la recepción -->
+        <p style="font-size: 12px; margin: 8px 0;">Después de la ceremonia, se realizará una recepción en:</p>
+        <p style="font-size: 12px; margin: 8px 0;"><strong>Pasaje El Fundo 525, Villa Tocornal 2, Puente Alto</strong></p>
+
+        <div class="footer">
+            <p>Esperamos celebrar este momento especial contigo.</p>
+            <p class="footer">Con mucho cariño, Familia Tello Marambio.</p>
+            <p><a href="https://www.google.com/maps?q=-33.60906290783182,-70.5926643396606" target="_blank">Ver Ubicación en Google Maps</a></p>
+        </div>
+    </div>
+</body>
+</html>
