@@ -180,7 +180,7 @@
         }
 
          /* Media Queries para Responsividad */
-         @media (max-width: 768px) {
+        @media (max-width: 768px) {
             .envelope-container {
                 width: 250px;
                 height: 180px;
@@ -249,11 +249,45 @@
                 font-size: 12px;
             }
         }
+
+        /* Media Query para pantallas medianas (360px - 460px) */
+        @media (max-width: 460px) {
+            .envelope-container {
+                width: 240px;
+                height: 180px;
+            }
+
+            .invitation {
+                padding: 15px;
+                max-width: 85%;
+            }
+
+            .invitation h1 {
+                font-size: 26px;
+            }
+
+            .invitation h2 {
+                font-size: 26px;
+            }
+
+            .invitation p {
+                font-size: 12px;
+            }
+
+            .girl-image {
+                width: 180px;
+            }
+
+            .open-button {
+                width: 40px;
+                height: 40px;
+                font-size: 14px;
+            }
+        }
     </style>
 </head>
 <body>
     <audio id="invitationAudio" src="Romantic_Flight.mp3" preload="auto"></audio>
-
 
     <div class="envelope-container" onclick="toggleEnvelope()">
         <div class="envelope">
@@ -313,7 +347,6 @@
             }, 500); // Tiempo de la animación (500ms)
         }
 
-        
     </script>
 </body>
 </html>
