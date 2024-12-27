@@ -83,6 +83,7 @@
             border-radius: 20px;
             padding: 30px;
             max-width: 600px;
+            width: 100%;
             text-align: center;
             box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
             z-index: 2;
@@ -179,7 +180,7 @@
             transform: scale(0);
         }
 
-         /* Media Queries para Responsividad */
+        /* Media Queries para Responsividad */
         @media (max-width: 768px) {
             .envelope-container {
                 width: 250px;
@@ -341,12 +342,8 @@
 
         function hideButton(event) {
             const button = event.target; // El botón que fue clickeado
-            button.classList.add('button-hidden'); // Aplica la clase de animación
-            setTimeout(() => {
-                button.style.display = 'none'; // Finalmente oculta el botón
-            }, 500); // Tiempo de la animación (500ms)
+            button.classList.add('button-hidden'); // Oculta el botón
         }
-
     </script>
 </body>
 </html>
