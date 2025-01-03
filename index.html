@@ -17,14 +17,6 @@
                 transform: translate(-50%, -50%);
             }
         }
-        a {
-            color: black; /* Cambia el color del enlace a negro */
-            text-decoration: none; /* Elimina el subrayado del enlace */
-        }
-
-        a:hover {
-            text-decoration: underline; /* Agrega subrayado solo cuando el mouse pase sobre el enlace */
-        }
 
         body {
             margin: 0;
@@ -143,7 +135,6 @@
             height: 100%;
             z-index: 1;
             opacity: 0.3;
-            pointer-events: none;
         }
 
         .footer {
@@ -303,8 +294,6 @@
                 height: 40px;
                 font-size: 14px;
             }
-
-            
         }
     </style>
 </head>
@@ -329,26 +318,17 @@
         <img src="niña2.png" alt="Niña Bautizándose" class="girl-image">
         <p>Ven a acompañarnos en este día tan especial y lleno de bendiciones.</p>
         <p style="font-size: 12px; margin: 8px 0;">Lugar: <strong>Capilla Nuestra Señora de Fátima</strong></p>
-        <p style="font-size: 12px; margin: 8px 0;">
-            Dirección: <strong>
-                <a href="https://www.google.com/maps?q=-33.60906290783182,-70.5926643396606" target="_blank" rel="noopener noreferrer" >
-                    Mariano Gómez 1065, Puente Alto, Región Metropolitana
-                </a>
-            </strong>
-        </p>        <p style="font-size: 12px; margin: 8px 0;">Fecha y hora: <strong>8 de Marzo de 2025</strong></p>
+        <p style="font-size: 12px; margin: 8px 0;">Dirección: <strong>Mariano Gómez 1065, Puente Alto, Región Metropolitana</strong></p>
+        <p style="font-size: 12px; margin: 8px 0;">Fecha y hora: <strong>Febrero de 2025</strong></p>
 
         <!-- Información de la recepción -->
         <p style="font-size: 12px; margin: 8px 0;">Después de la ceremonia, se realizará una recepción en:</p>
-        <p style="font-size: 12px; margin: 8px 0;">Dirección: <strong>
-                <a href="https://www.google.com/maps?q=-33.60999322466669,-70.5961078331016" target="_blank">
-                    Pasaje El Fundo 525, Villa Tocornal 2, Puente Alto
-                </a>
-            </strong>
-        </p>
-        
+        <p style="font-size: 12px; margin: 8px 0;"><strong>Pasaje El Fundo 525, Villa Tocornal 2, Puente Alto</strong></p>
+
         <div class="footer">
             <p>Esperamos celebrar este momento especial contigo.</p>
             <p class="footer">Con mucho cariño, Familia Tello Marambio.</p>
+            <p><a href="https://www.google.com/maps?q=-33.60906290783182,-70.5926643396606" target="_blank">Ver Ubicación en Google Maps</a></p>
         </div>
     </div>
 
@@ -374,8 +354,8 @@
         }
 
         function hideButton(event) {
-            event.stopPropagation(); // Detiene la propagación del evento
-            document.querySelector('.open-button').classList.add('button-hidden');
+            const button = event.target; // El botón que fue clickeado
+            button.classList.add('button-hidden'); // Oculta el botón
         }
     </script>
 </body>
