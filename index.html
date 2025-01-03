@@ -135,6 +135,7 @@
             height: 100%;
             z-index: 1;
             opacity: 0.3;
+            pointer-events: none
         }
 
         .footer {
@@ -294,6 +295,14 @@
                 height: 40px;
                 font-size: 14px;
             }
+            a {
+                color: black; /* Cambia el color del enlace a negro */
+                text-decoration: none; /* Elimina el subrayado del enlace */
+            }
+
+            a:hover {
+                text-decoration: underline; /* Agrega subrayado solo cuando el mouse pase sobre el enlace */
+            }
         }
     </style>
 </head>
@@ -318,20 +327,22 @@
         <img src="niña2.png" alt="Niña Bautizándose" class="girl-image">
         <p>Ven a acompañarnos en este día tan especial y lleno de bendiciones.</p>
         <p style="font-size: 12px; margin: 8px 0;">Lugar: <strong>Capilla Nuestra Señora de Fátima</strong></p>
-        <p style="font-size: 12px; margin: 8px 0;">Dirección: <strong>Mariano Gómez 1065, Puente Alto, Región Metropolitana</strong></p>
+        <p style="font-size: 12px; margin: 8px 0;">Dirección: <strong><a href="https://www.google.com/maps?q=-33.60906290783182,-70.5926643396606" target="_blank" rel="noopener noreferrer">
+            Mariano Gómez 1065, Puente Alto, Región Metropolitana</strong>
+        </a></p>
         <p style="font-size: 12px; margin: 8px 0;">Fecha y hora: <strong>Febrero de 2025</strong></p>
 
         <!-- Información de la recepción -->
         <p style="font-size: 12px; margin: 8px 0;">Después de la ceremonia, se realizará una recepción en:</p>
-        <p style="font-size: 12px; margin: 8px 0;"><strong>Pasaje El Fundo 525, Villa Tocornal 2, Puente Alto</strong></p>
+        <p style="font-size: 12px; margin: 8px 0;"><strong><a href="https://www.google.com/maps?q=-33.60982985696266, -70.59608481349355" target="_blank" rel="noopener noreferrer">
+            Pasaje El Fundo 524, Villa Tocornal 2, Puente Alto</strong></p>
 
         <div class="footer">
             <p>Esperamos celebrar este momento especial contigo.</p>
             <p class="footer">Con mucho cariño, Familia Tello Marambio.</p>
-            <p><a href="https://www.google.com/maps?q=-33.60906290783182,-70.5926643396606" target="_blank">Ver Ubicación en Google Maps</a></p>
         </div>
     </div>
-
+    
     <script>
         function toggleEnvelope() {
             const envelope = document.querySelector('.envelope');
