@@ -1,29 +1,418 @@
-<div style="background-image: url('https://www.transparenttextures.com/patterns/aged-paper.png'); 
-            background-color: rgba(249, 243, 228, 0.9); 
-            background-size: 50%; 
-            padding: 15px; 
-            margin: 20px auto; 
-            border: 3px solid #d4b97f; 
-            border-radius: 15px; 
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3); /* Sombra difusa para el borde */
-            font-family: 'Georgia', serif; 
-            text-align: center; 
-            max-width: 400px; 
-            line-height: 1.8;
-            background-clip: padding-box; /* Evitar que el fondo se desborde del borde */
-            position: relative;">
-    <p style="font-size: 12px; margin: 10px 0;">Lugar: <strong>Capilla Nuestra Señora de Fátima</strong></p>
-    <p style="font-size: 12px; margin: 10px 0;">Dirección:
-        <strong><a href="https://www.google.com/maps?q=-33.60906290783182,-70.5926643396606" target="_blank"
-                    rel="noopener noreferrer" style="color: #8b4513; text-decoration: underline;">
-                    Mariano Gómez 1065, Puente Alto, Región Metropolitana</a></strong>
-    </p>
-    <p style="font-size: 12px; margin: 10px 0;">Fecha y hora: <strong>8 de Marzo de 2025, a las 16 hrs</strong></p>
+<!DOCTYPE html>
+<html lang="es">
 
-    <p style="font-size: 12px; margin: 10px 0;">Después de la ceremonia, se realizará una recepción en:</p>
-    <p style="font-size: 12px; margin: 10px 0;">
-        <strong><a href="https://www.google.com/maps?q=-33.61335588021438, -70.5969239671635" target="_blank"
-                    rel="noopener noreferrer" style="color: #8b4513; text-decoration: underline;">
-                    Pasaje Pedro de Miranda #1440, Villa El Cabildo, Puente Alto</a></strong>
-    </p>
-</div>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invitación Bautizo</title>
+    <link rel="icon" href="paloma.png" type="image/png">
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Alex+Brush&family=Great+Vibes&family=Lora:ital@0;1&family=Quicksand:wght@400;600&display=swap');
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translate(-50%, -60%);
+            }
+
+            to {
+                opacity: 1;
+                transform: translate(-50%, -50%);
+            }
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Lora', serif;
+            background-color: #f1f1f1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-image: url('fondo.jpg');
+            /* Fondo de la página */
+            background-size: cover;
+            background-position: center;
+        }
+
+        .envelope-container {
+            position: relative;
+            width: 300px;
+            height: 200px;
+            perspective: 1000px;
+        }
+
+        .envelope {
+            width: 100%;
+            height: 100%;
+            background: #d4a97b;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 1s;
+            cursor: pointer;
+        }
+
+        .envelope .front-flap {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: #bc8658;
+            clip-path: polygon(0 0, 50% 50%, 100% 0);
+            transform-origin: top;
+            transform: rotateX(0deg);
+            transition: transform 0.6s;
+        }
+
+        .envelope.open .front-flap {
+            transform: rotateX(-180deg);
+        }
+
+        .envelope .back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: #d4a97b;
+            clip-path: polygon(0 100%, 50% 50%, 100% 100%);
+        }
+
+        .invitation {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(255, 255, 255, 0.95);
+            border: 10px solid #f2e4dc;
+            border-radius: 20px;
+            padding: 30px;
+            max-width: 600px;
+            width: 100%;
+            text-align: center;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            z-index: 2;
+            animation: fadeIn 1s ease-out forwards;
+            opacity: 0;
+        }
+
+        .envelope.open~.invitation {
+            display: block;
+        }
+
+        .invitation h1 {
+            font-family: 'Alex Brush', cursive;
+            font-size: 40px;
+            color: #d4a97b;
+            margin-bottom: 10px;
+        }
+
+        .invitation h2 {
+            font-family: 'Great Vibes', cursive;
+            font-size: 36px;
+            color: #876445;
+        }
+
+        .invitation p {
+            font-size: 16px;
+            margin: 15px 0;
+            font-family: 'Quicksand', sans-serif;
+        }
+
+        .highlight {
+            font-family: 'Great Vibes', cursive;
+            font-size: 28px;
+            color: #bc8658;
+        }
+
+        .girl-image {
+            margin: 20px auto;
+            width: 300px;
+            height: auto;
+            display: block;
+        }
+
+        .gif-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            opacity: 0.3;
+            pointer-events: none
+        }
+
+        .footer {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #876445;
+            position: relative;
+            z-index: 3;
+        }
+
+        .footer a {
+            color: #d4a97b;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Estilo del botón redondo en la solapa */
+        .open-button {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #bc8658;
+            color: white;
+            font-family: 'Quicksand', sans-serif;
+            padding: 0;
+            /* El padding ahora se elimina para que el tamaño del botón sea fijo */
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            border: none;
+            cursor: pointer;
+            font-size: 12px;
+            /* Tamaño de la fuente reducido */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: background-color 0.3s ease, transform 0.5s ease, opacity 0.5s ease;
+            z-index: 2;
+
+            /* Centrado del texto dentro del botón */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .open-button:hover {
+            background-color: #d4a97b;
+        }
+
+        .button-hidden {
+            opacity: 0;
+            transform: scale(0);
+        }
+
+        /* Media Queries para Responsividad */
+        @media (max-width: 768px) {
+            .envelope-container {
+                width: 250px;
+                height: 180px;
+            }
+
+            .invitation {
+                padding: 20px;
+                max-width: 90%;
+            }
+
+            .invitation h1 {
+                font-size: 30px;
+            }
+
+            .invitation h2 {
+                font-size: 28px;
+            }
+
+            .invitation p {
+                font-size: 14px;
+            }
+
+            /* Reducción de tamaño de los párrafos con información */
+            .invitation p[style] {
+                font-size: 10px;
+                /* Hace el texto aún más pequeño */
+            }
+
+            .girl-image {
+                width: 200px;
+            }
+
+            .open-button {
+                width: 40px;
+                height: 40px;
+                padding: 10px;
+                font-size: 14px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .envelope-container {
+                width: 220px;
+                height: 160px;
+            }
+
+            .invitation {
+                padding: 15px;
+                max-width: 90%;
+            }
+
+            .invitation h1 {
+                font-size: 24px;
+            }
+
+            .invitation h2 {
+                font-size: 24px;
+            }
+
+            .invitation p {
+                font-size: 12px;
+            }
+
+            /* Reducción de tamaño de los párrafos con información */
+            .invitation p[style] {
+                font-size: 8px;
+                /* Más pequeño aún */
+            }
+
+            .girl-image {
+                width: 150px;
+            }
+
+            .open-button {
+                width: 35px;
+                height: 35px;
+                padding: 8px;
+                font-size: 12px;
+            }
+        }
+
+        /* Media Query para pantallas medianas (360px - 460px) */
+        @media (max-width: 460px) {
+            .envelope-container {
+                width: 240px;
+                height: 180px;
+            }
+
+            .invitation {
+                padding: 15px;
+                max-width: 85%;
+            }
+
+            .invitation h1 {
+                font-size: 26px;
+            }
+
+            .invitation h2 {
+                font-size: 26px;
+            }
+
+            .invitation p {
+                font-size: 12px;
+            }
+
+            .girl-image {
+                width: 180px;
+            }
+
+            .open-button {
+                width: 40px;
+                height: 40px;
+                font-size: 14px;
+            }
+
+            a {
+                color: black;
+                /* Cambia el color del enlace a negro */
+                text-decoration: none;
+                /* Elimina el subrayado del enlace */
+            }
+
+            a:hover {
+                text-decoration: underline;
+                /* Agrega subrayado solo cuando el mouse pase sobre el enlace */
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <audio id="invitationAudio" src="Romantic_Flight.mp3" preload="auto"></audio>
+
+    <div class="envelope-container" onclick="toggleEnvelope()">
+        <div class="envelope">
+            <div class="front-flap"></div>
+            <div class="back"></div>
+            <button class="open-button" onclick="hideButton(event)">Abrir</button>
+        </div>
+    </div>
+
+    <div class="invitation">
+
+        <img src="flores.gif" alt="Flores Cayendo" class="gif-background">
+
+        <h1>Estás Invitado</h1>
+        <h2>Al Bautizo de</h2>
+        <p class="highlight">Alessandra Rayel Tello Marambio</p>
+        <img src="niña2.png" alt="Niña Bautizándose" class="girl-image">
+        <p>Ven a acompañarnos en este día tan especial y lleno de bendiciones.</p>
+        <div style="background-image: url('https://www.transparenttextures.com/patterns/aged-paper.png'); 
+        background-color: rgba(249, 243, 228, 0.9); 
+        background-size: 50%; 
+        padding: 15px; 
+        margin: 20px auto; 
+        border: 3px solid #d4b97f; 
+        border-radius: 15px; 
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3); /* Sombra difusa para el borde */
+        font-family: 'Georgia', serif; 
+        text-align: center; 
+        max-width: 400px; 
+        line-height: 1.8;
+        background-clip: padding-box; /* Evitar que el fondo se desborde del borde */
+        position: relative;">
+            <p style="font-size: 12px; margin: 10px 0;">Lugar: <strong>Capilla Nuestra Señora de Fátima</strong></p>
+            <p style="font-size: 12px; margin: 10px 0;">Dirección:
+                <strong><a href="https://www.google.com/maps?q=-33.60906290783182,-70.5926643396606" target="_blank"
+                        rel="noopener noreferrer" style="color: #8b4513; text-decoration: underline;">
+                        Mariano Gómez 1065, Puente Alto, Región Metropolitana</a></strong>
+            </p>
+            <p style="font-size: 12px; margin: 10px 0;">Fecha y hora: <strong>8 de Marzo de 2025, a las 16 hrs</strong>
+            </p>
+
+            <p style="font-size: 12px; margin: 10px 0;">Después de la ceremonia, se realizará una recepción en:</p>
+            <p style="font-size: 12px; margin: 10px 0;">
+                <strong><a href="https://www.google.com/maps?q=-33.61335588021438, -70.5969239671635" target="_blank"
+                        rel="noopener noreferrer" style="color: #8b4513; text-decoration: underline;">
+                        Pasaje Pedro de Miranda #1440, Villa El Cabildo, Puente Alto</a></strong>
+            </p>
+        </div>
+
+        <div class="footer">
+            <p>Esperamos celebrar este momento especial contigo.</p>
+            <p class="footer">Con mucho cariño, Familia Tello Marambio.</p>
+        </div>
+    </div>
+
+    <script>
+        function toggleEnvelope() {
+            const envelope = document.querySelector('.envelope');
+            const invitation = document.querySelector('.invitation');
+            const audio = document.getElementById('invitationAudio'); // Obtenemos el elemento de audio
+
+            // Establece el volumen del audio (valor entre 0 y 1)
+            audio.volume = 0.2; // Baja el volumen al 30%
+
+            envelope.classList.add('open'); // Abre el sobre
+
+            // Espera el tiempo de la animación para mostrar la invitación
+            setTimeout(() => {
+                envelope.style.display = 'none'; // Oculta el sobre
+                invitation.style.display = 'block'; // Muestra la invitación
+
+                // Reproduce la canción
+                audio.play();
+            }, 1000); // Ajusta el tiempo según la duración de la animación del sobre
+        }
+
+        function hideButton(event) {
+            const button = event.target; // El botón que fue clickeado
+            button.classList.add('button-hidden'); // Oculta el botón
+        }
+    </script>
+</body>
+
+</html>
