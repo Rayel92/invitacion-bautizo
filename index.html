@@ -32,9 +32,9 @@
             align-items: center;
             min-height: 100vh;
             background-image: url('fondo.jpg');
-            /* Fondo de la página */
-            background-size: cover;
-            background-position: center;
+            background-size: cover; /* Mantiene la cobertura de la imagen */
+            background-position: center; /* Asegura que el fondo esté centrado */
+            background-attachment: fixed; /* Fijar el fondo para un mejor efecto */
         }
 
         .envelope-container {
@@ -200,6 +200,11 @@
 
         /* Media Queries para Responsividad */
         @media (max-width: 768px) {
+            body {
+                background-size: cover; /* Asegura que el fondo se adapte a pantallas medianas */
+                background-position: center top; /* Centra el fondo en la parte superior */
+            }
+            
             .envelope-container {
                 width: 250px;
                 height: 180px;
@@ -241,6 +246,12 @@
         }
 
         @media (max-width: 480px) {
+            @media (max-width: 480px) {
+            body {
+                background-size: auto 100%; /* Hace que el fondo cubra todo el alto de la pantalla sin distorsionar */
+                background-position: top center; /* Ajuste en pantallas muy pequeñas */
+            }
+        }
             .envelope-container {
                 width: 220px;
                 height: 160px;
@@ -380,6 +391,10 @@
                         Pasaje Pedro de Miranda #1440, Villa El Cabildo, Puente Alto</a></strong>
             </p>
         </div>
+
+
+
+
 
         <div class="footer">
             <p>Esperamos celebrar este momento especial contigo.</p>
