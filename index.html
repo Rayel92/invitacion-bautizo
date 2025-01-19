@@ -334,6 +334,25 @@
 
 <body>
     <audio id="invitationAudio" src="Romantic_Flight.mp3" preload="auto"></audio>
+    <!-- Botón pequeño de pausa para controlar la música -->
+    <div style="position: absolute; bottom: 20px; right: 20px; z-index: 5;">
+        <button id="pauseButton" onclick="toggleAudio()" style="
+            background-color: #bc8658; 
+            color: white; 
+            border: none; 
+            border-radius: 50%; 
+            width: 40px; 
+            height: 40px; 
+            font-size: 20px; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+            transition: background-color 0.3s ease;">
+            ❚❚
+        </button>
+    </div>
 
     <div class="envelope-container" onclick="toggleEnvelope()">
         <div class="envelope">
@@ -373,7 +392,7 @@
                         rel="noopener noreferrer" style="color: #8b4513; text-decoration: underline;">
                         Mariano Gómez 1065, Puente Alto, Región Metropolitana</a></strong>
             </p>
-            <p class="evento-text" style="font-size: 12px; margin: 10px 0;">Fecha y hora: <strong>Sábado 8 de Marzo, a
+            <p class="evento-text" style="font-size: 12px; margin: 10px 0;">Fecha y hora: <strong>8 de Marzo de 2025, a
                     las 16:00 hrs</strong>
             </p>
 
@@ -430,6 +449,24 @@
                 }
             }
         });
+
+        let isPlaying = true; // Estado del audio
+
+        function toggleAudio() {
+            const audio = document.getElementById("invitationAudio");
+            const pauseButton = document.getElementById("pauseButton");
+
+            if (isPlaying) {
+                audio.pause();
+                pauseButton.textContent = "▶"; // Cambiar icono a reproducir
+            } else {
+                audio.play();
+                pauseButton.textContent = "❚❚"; // Cambiar icono a pausa
+            }
+
+            isPlaying = !isPlaying; // Alternar el estado
+        }
+
     </script>
 </body>
 
