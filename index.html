@@ -104,22 +104,23 @@
         }
 
         .invitation h1 {
-            font-family: 'Alex Brush', cursive;
-            font-size: 40px;
-            color: #d4a97b;
-            margin-bottom: 10px;
-        }
-
-        .invitation h2 {
             font-family: 'Great Vibes', cursive;
-            font-size: 36px;
-            color: #876445;
+            font-size: 30px;
+            color: #c9aa88;
+            margin-bottom: 10px;
         }
 
         .invitation p {
             font-size: 16px;
             margin: 15px 0;
             font-family: 'Quicksand', sans-serif;
+        }
+
+        p.highlight.special-font {
+            font-size: 40px;
+            font-family: 'Great Vibes', cursive;
+            color: #502c00;
+            
         }
 
         .highlight {
@@ -222,10 +223,6 @@
                 font-size: 30px;
             }
 
-            .invitation h2 {
-                font-size: 28px;
-            }
-
             .invitation p {
                 font-size: 14px;
             }
@@ -268,10 +265,6 @@
                 font-size: 24px;
             }
 
-            .invitation h2 {
-                font-size: 24px;
-            }
-
             .invitation p {
                 font-size: 12px;
             }
@@ -307,10 +300,6 @@
             }
 
             .invitation h1 {
-                font-size: 26px;
-            }
-
-            .invitation h2 {
                 font-size: 26px;
             }
 
@@ -358,9 +347,9 @@
 
         <img src="flores.gif" alt="Flores Cayendo" class="gif-background">
 
-        <h1>Estás Invitado</h1>
-        <h2>Al Bautizo de</h2>
-        <p class="highlight">Alessandra Rayel Tello Marambio</p>
+        <h1>Estás invitado al Bautizo de</h1>
+
+        <p class="highlight special-font">Alessandra Rayel Tello Marambio</p>
         <img src="niña2.png" alt="Niña Bautizándose" class="girl-image">
         <p>Ven a acompañarnos en este día tan especial y lleno de bendiciones.</p>
 
@@ -409,7 +398,7 @@
             const envelope = document.querySelector('.envelope');
             const invitation = document.querySelector('.invitation');
             const audio = document.getElementById('invitationAudio'); // Obtenemos el elemento de audio
-
+            
             // Establece el volumen del audio (valor entre 0 y 1)
             audio.volume = 0.2; // Baja el volumen al 30%
 
@@ -429,6 +418,18 @@
             const button = event.target; // El botón que fue clickeado
             button.classList.add('button-hidden'); // Oculta el botón
         }
+
+        // Pausar audio cuando la página no es visible
+        document.addEventListener('visibilitychange', () => {
+            if (document.hidden) {
+                audio.pause();
+            } else {
+                const envelope = document.querySelector('.envelope');
+                if (envelope.classList.contains('open')) {
+                    audio.play();
+                }
+            }
+        });
     </script>
 </body>
 
